@@ -14,7 +14,9 @@ import javax.crypto.SecretKey;
 @Component
 public class JwtUtil {
 
-    private final SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private final String SECRET = "my-super-secret-key-my-super-secret-key-123456";
+
+    private final SecretKey key = Keys.hmacShaKeyFor(SECRET.getBytes());
 
     public String generateToken(String username) {
         return Jwts.builder()
